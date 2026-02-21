@@ -23,11 +23,9 @@ public class FindConstantTerm {
 
     public static void main(String[] args) throws Exception {
 
-        // Read JSON file
         FileReader reader = new FileReader("testcases.json");
         JSONObject json = new JSONObject(new JSONTokener(reader));
 
-        // Loop through testcases
         Iterator<String> testcases = json.keys();
 
         while (testcases.hasNext()) {
@@ -54,7 +52,6 @@ public class FindConstantTerm {
                 int base = Integer.parseInt(obj.getString("base"));
                 String valueStr = obj.getString("value");
 
-                // Convert base → decimal
                 BigInteger yInt = new BigInteger(valueStr, base);
 
                 BigDecimal x = new BigDecimal(key);
@@ -64,7 +61,6 @@ public class FindConstantTerm {
                 count++;
             }
 
-            // Compute constant
             BigDecimal c = lagrangeAtZero(points);
 
             System.out.println(testcaseName + " Constant term (c) = " + c.toBigInteger());
@@ -107,4 +103,5 @@ public class FindConstantTerm {
 
     return result.setScale(0, java.math.RoundingMode.HALF_UP);
 }
+
 }
